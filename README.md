@@ -8,6 +8,10 @@ Participantes:
   - [Daniel Alejandro Nowendsztern](https://github.com/danielnowendsztern)
   - [Viktor Shamel Jacynycz García](https://github.com/Re1del)
 
+Compilación
+=========
+En la raiz del proyecto: `./result.sh` o `bash result.sh`
+
 License
 ===
 [GNU GPL Version 2](https://github.com/plgucm/practicas/blob/master/LICENSE), more [info](http://en.wikipedia.org/wiki/GNU_General_Public_License).
