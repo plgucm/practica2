@@ -1,2 +1,2 @@
 #!/bin/bash
-java -cp javacc.jar Tiny.jj
+java -cp javacc.jar javacc Tiny.jj

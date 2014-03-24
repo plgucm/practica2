@@ -2,7 +2,7 @@ options  {
   STATIC=false;
 }  
 PARSER_BEGIN(AnalizadorSintacticoTiny)
-package asint;
+package javacc.asint;
 
 public class AnalizadorSintacticoTiny {}
 PARSER_END(AnalizadorSintacticoTiny)
