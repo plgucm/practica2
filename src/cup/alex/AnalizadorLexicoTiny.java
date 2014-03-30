@@ -13,13 +13,13 @@ public class AnalizadorLexicoTiny implements java_cup.runtime.Scanner {
 	private final int YY_BOL = 65536;
 	private final int YY_EOF = 65537;
 
-	private ALexOperations ops;
-	private GestionErroresTiny errores;
-	public String lexema() {return yytext();}
-	public int fila() {return yyline+1;}
-	public void fijaGestionErrores(GestionErroresTiny errores) {
-		this.errores = errores;
-	}
+  private ALexOperations ops;
+  private GestionErroresTiny errores;
+  public String lexema() {return yytext();}
+  public int fila() {return yyline+1;}
+  public void fijaGestionErrores(GestionErroresTiny errores) {
+   this.errores = errores;
+  }
 	private java.io.BufferedReader yy_reader;
 	private int yy_buffer_index;
 	private int yy_buffer_read;
@@ -56,19 +56,19 @@ public class AnalizadorLexicoTiny implements java_cup.runtime.Scanner {
 		yy_at_bol = true;
 		yy_lexical_state = YYINITIAL;
 
-		ops = new ALexOperations(this);
+  ops = new ALexOperations(this);
 	}
 
 	private boolean yy_eof_done = false;
 	private final int YYINITIAL = 0;
 	private final int yy_state_dtrans[] = {
-			0
+		0
 	};
 	private void yybegin (int state) {
 		yy_lexical_state = state;
 	}
 	private int yy_advance ()
-			throws java.io.IOException {
+		throws java.io.IOException {
 		int next_read;
 		int i;
 		int j;
@@ -114,10 +114,10 @@ public class AnalizadorLexicoTiny implements java_cup.runtime.Scanner {
 	}
 	private void yy_move_end () {
 		if (yy_buffer_end > yy_buffer_start &&
-				'\n' == yy_buffer[yy_buffer_end-1])
+		    '\n' == yy_buffer[yy_buffer_end-1])
 			yy_buffer_end--;
 		if (yy_buffer_end > yy_buffer_start &&
-				'\r' == yy_buffer[yy_buffer_end-1])
+		    '\r' == yy_buffer[yy_buffer_end-1])
 			yy_buffer_end--;
 	}
 	private boolean yy_last_was_cr=false;
@@ -140,15 +140,15 @@ public class AnalizadorLexicoTiny implements java_cup.runtime.Scanner {
 	private void yy_to_mark () {
 		yy_buffer_index = yy_buffer_end;
 		yy_at_bol = (yy_buffer_end > yy_buffer_start) &&
-				('\r' == yy_buffer[yy_buffer_end-1] ||
-				'\n' == yy_buffer[yy_buffer_end-1] ||
-				2028/*LS*/ == yy_buffer[yy_buffer_end-1] ||
-				2029/*PS*/ == yy_buffer[yy_buffer_end-1]);
+		            ('\r' == yy_buffer[yy_buffer_end-1] ||
+		             '\n' == yy_buffer[yy_buffer_end-1] ||
+		             2028/*LS*/ == yy_buffer[yy_buffer_end-1] ||
+		             2029/*PS*/ == yy_buffer[yy_buffer_end-1]);
 	}
 	private java.lang.String yytext () {
 		return (new java.lang.String(yy_buffer,
-				yy_buffer_start,
-				yy_buffer_end - yy_buffer_start));
+			yy_buffer_start,
+			yy_buffer_end - yy_buffer_start));
 	}
 	private int yylength () {
 		return yy_buffer_end - yy_buffer_start;
@@ -165,8 +165,8 @@ public class AnalizadorLexicoTiny implements java_cup.runtime.Scanner {
 	private final int YY_E_INTERNAL = 0;
 	private final int YY_E_MATCH = 1;
 	private java.lang.String yy_error_string[] = {
-			"Error: Internal error.\n",
-			"Error: Unmatched input.\n"
+		"Error: Internal error.\n",
+		"Error: Unmatched input.\n"
 	};
 	private void yy_error (int code,boolean fatal) {
 		java.lang.System.out.print(yy_error_string[code]);
@@ -202,7 +202,7 @@ public class AnalizadorLexicoTiny implements java_cup.runtime.Scanner {
 					continue;
 				}
 				lengthString =
-						workString.substring(colonIndex+1);
+					workString.substring(colonIndex+1);
 				sequenceLength=Integer.parseInt(lengthString);
 				workString=workString.substring(0,colonIndex);
 				sequenceInteger=Integer.parseInt(workString);
@@ -213,52 +213,52 @@ public class AnalizadorLexicoTiny implements java_cup.runtime.Scanner {
 		return res;
 	}
 	private int yy_acpt[] = {
-			/* 0 */ YY_NOT_ACCEPT,
-			/* 1 */ YY_NO_ANCHOR,
-			/* 2 */ YY_NO_ANCHOR,
-			/* 3 */ YY_NO_ANCHOR,
-			/* 4 */ YY_NO_ANCHOR,
-			/* 5 */ YY_NO_ANCHOR,
-			/* 6 */ YY_NO_ANCHOR,
-			/* 7 */ YY_NO_ANCHOR,
-			/* 8 */ YY_NO_ANCHOR,
-			/* 9 */ YY_NO_ANCHOR,
-			/* 10 */ YY_NO_ANCHOR,
-			/* 11 */ YY_NO_ANCHOR,
-			/* 12 */ YY_NO_ANCHOR,
-			/* 13 */ YY_NO_ANCHOR,
-			/* 14 */ YY_NO_ANCHOR,
-			/* 15 */ YY_NO_ANCHOR,
-			/* 16 */ YY_NO_ANCHOR,
-			/* 17 */ YY_NO_ANCHOR,
-			/* 18 */ YY_NO_ANCHOR,
-			/* 19 */ YY_NO_ANCHOR,
-			/* 20 */ YY_NO_ANCHOR,
-			/* 21 */ YY_NO_ANCHOR,
-			/* 22 */ YY_NO_ANCHOR,
-			/* 23 */ YY_NO_ANCHOR,
-			/* 24 */ YY_NO_ANCHOR,
-			/* 25 */ YY_NO_ANCHOR,
-			/* 26 */ YY_NO_ANCHOR,
-			/* 27 */ YY_NO_ANCHOR
+		/* 0 */ YY_NOT_ACCEPT,
+		/* 1 */ YY_NO_ANCHOR,
+		/* 2 */ YY_NO_ANCHOR,
+		/* 3 */ YY_NO_ANCHOR,
+		/* 4 */ YY_NO_ANCHOR,
+		/* 5 */ YY_NO_ANCHOR,
+		/* 6 */ YY_NO_ANCHOR,
+		/* 7 */ YY_NO_ANCHOR,
+		/* 8 */ YY_NO_ANCHOR,
+		/* 9 */ YY_NO_ANCHOR,
+		/* 10 */ YY_NO_ANCHOR,
+		/* 11 */ YY_NO_ANCHOR,
+		/* 12 */ YY_NO_ANCHOR,
+		/* 13 */ YY_NO_ANCHOR,
+		/* 14 */ YY_NO_ANCHOR,
+		/* 15 */ YY_NO_ANCHOR,
+		/* 16 */ YY_NO_ANCHOR,
+		/* 17 */ YY_NO_ANCHOR,
+		/* 18 */ YY_NO_ANCHOR,
+		/* 19 */ YY_NO_ANCHOR,
+		/* 20 */ YY_NO_ANCHOR,
+		/* 21 */ YY_NO_ANCHOR,
+		/* 22 */ YY_NO_ANCHOR,
+		/* 23 */ YY_NO_ANCHOR,
+		/* 24 */ YY_NO_ANCHOR,
+		/* 25 */ YY_NO_ANCHOR,
+		/* 26 */ YY_NO_ANCHOR,
+		/* 27 */ YY_NO_ANCHOR
 	};
 	private int yy_cmap[] = unpackFromString(1,65538,
-			"3:8,4:2,1,3:2,4,3:18,4,3:2,2,3:4,23,24,21,19,17,20,18,22,16,15:9,3:3,25,3:3" +
-			",13:26,3:6,7,14:2,10,5,14:6,8,14,12,11,14:5,9,6,14:4,3:65413,0:2")[0];
+"3:8,4:2,1,3:2,4,3:18,4,3:2,2,3:4,23,24,21,19,17,20,18,22,16,15:9,3:3,25,3:3" +
+",13:26,3:6,7,14:2,10,5,14:6,8,14,12,11,14:5,9,6,14:4,3:65413,0:2")[0];
 
 	private int yy_rmap[] = unpackFromString(1,28,
-			"0,1:2,2,1,3,4,5:3,1:5,6,7:2,8,9,10,11,12,13,14,15,7:2")[0];
+"0,1:2,2,1,3,4,5:3,1:5,6,7:2,8,9,10,11,12,13,14,15,7:2")[0];
 
 	private int yy_nxt[][] = unpackFromString(16,26,
-			"1,2,3,4,2,5,27:4,24,27:4,6,4,7,4,8,9,10,11,12,13,14,-1:28,3:24,-1:5,27,25,2" +
-					"7:6,26,27,26:2,-1:24,6:2,-1,15,-1:22,6,-1:25,15:2,-1:14,27:8,26,27,26:2,-1:" +
-					"14,16,27:7,26,27,26:2,-1:14,27:2,17,27:5,26,27,26:2,-1:14,27:5,18,27:2,26,2" +
-					"7,26:2,-1:14,27:4,19,27:3,26,27,26:2,-1:14,27:7,20,26,27,26:2,-1:14,27:3,21" +
-					",27:4,26,27,26:2,-1:14,27:6,22,27,26,27,26:2,-1:14,27:2,23,27:5,26,27,26:2," +
-			"-1:9");
+"1,2,3,4,2,5,27:4,24,27:4,6,4,7,4,8,9,10,11,12,13,14,-1:28,3:24,-1:5,27,25,2" +
+"7:6,26,27,26:2,-1:24,6:2,-1,15,-1:22,6,-1:25,15:2,-1:14,27:8,26,27,26:2,-1:" +
+"14,16,27:7,26,27,26:2,-1:14,27:2,17,27:5,26,27,26:2,-1:14,27:5,18,27:2,26,2" +
+"7,26:2,-1:14,27:4,19,27:3,26,27,26:2,-1:14,27:7,20,26,27,26:2,-1:14,27:3,21" +
+",27:4,26,27,26:2,-1:14,27:6,22,27,26,27,26:2,-1:14,27:2,23,27:5,26,27,26:2," +
+"-1:9");
 
 	public java_cup.runtime.Symbol next_token ()
-			throws java.io.IOException {
+		throws java.io.IOException {
 		int yy_lookahead;
 		int yy_anchor = YY_NO_ANCHOR;
 		int yy_state = yy_state_dtrans[yy_lexical_state];
@@ -280,7 +280,7 @@ public class AnalizadorLexicoTiny implements java_cup.runtime.Scanner {
 			yy_next_state = yy_nxt[yy_rmap[yy_state]][yy_cmap[yy_lookahead]];
 			if (YY_EOF == yy_lookahead && true == yy_initial) {
 
-				return ops.unidadEof();
+  return ops.unidadEof();
 			}
 			if (YY_F != yy_next_state) {
 				yy_state = yy_next_state;
@@ -303,111 +303,111 @@ public class AnalizadorLexicoTiny implements java_cup.runtime.Scanner {
 					yy_to_mark();
 					switch (yy_last_accept_state) {
 					case 1:
-
+						
 					case -2:
 						break;
 					case 2:
-					{}
+						{}
 					case -3:
 						break;
 					case 3:
-					{}
+						{}
 					case -4:
 						break;
 					case 4:
-					{errores.errorLexico(fila(),lexema());}
+						{errores.errorLexico(fila(),lexema());}
 					case -5:
 						break;
 					case 5:
-					{return ops.unidadId();}
+						{return ops.unidadId();}
 					case -6:
 						break;
 					case 6:
-					{return ops.unidadEnt();}
+						{return ops.unidadEnt();}
 					case -7:
 						break;
 					case 7:
-					{return ops.unidadComa();}
+						{return ops.unidadComa();}
 					case -8:
 						break;
 					case 8:
-					{return ops.unidadSuma();}
+						{return ops.unidadSuma();}
 					case -9:
 						break;
 					case 9:
-					{return ops.unidadResta();}
+						{return ops.unidadResta();}
 					case -10:
 						break;
 					case 10:
-					{return ops.unidadMul();}
+						{return ops.unidadMul();}
 					case -11:
 						break;
 					case 11:
-					{return ops.unidadDiv();}
+						{return ops.unidadDiv();}
 					case -12:
 						break;
 					case 12:
-					{return ops.unidadPAp();}
+						{return ops.unidadPAp();}
 					case -13:
 						break;
 					case 13:
-					{return ops.unidadPCierre();}
+						{return ops.unidadPCierre();}
 					case -14:
 						break;
 					case 14:
-					{return ops.unidadIgual();}
+						{return ops.unidadIgual();}
 					case -15:
 						break;
 					case 15:
-					{return ops.unidadReal();}
+						{return ops.unidadReal();}
 					case -16:
 						break;
 					case 16:
-					{return ops.unidadDonde();}
+						{return ops.unidadDonde();}
 					case -17:
 						break;
 					case 17:
-					{return ops.unidadEvalua();}
+						{return ops.unidadEvalua();}
 					case -18:
 						break;
 					case 18:
-					{return ops.unidadId();}
+						{return ops.unidadId();}
 					case -19:
 						break;
 					case 19:
-					{return ops.unidadId();}
+						{return ops.unidadId();}
 					case -20:
 						break;
 					case 20:
-					{return ops.unidadId();}
+						{return ops.unidadId();}
 					case -21:
 						break;
 					case 21:
-					{return ops.unidadId();}
+						{return ops.unidadId();}
 					case -22:
 						break;
 					case 22:
-					{return ops.unidadId();}
+						{return ops.unidadId();}
 					case -23:
 						break;
 					case 23:
-					{return ops.unidadId();}
+						{return ops.unidadId();}
 					case -24:
 						break;
 					case 24:
-					{return ops.unidadId();}
+						{return ops.unidadId();}
 					case -25:
 						break;
 					case 25:
-					{return ops.unidadId();}
+						{return ops.unidadId();}
 					case -26:
 						break;
 					case 26:
-					{return ops.unidadId();}
+						{return ops.unidadId();}
 					case -27:
 						break;
 					case 27:
-					{return ops.unidadId();}
+						{return ops.unidadId();}
 					case -28:
 						break;
 					default:
