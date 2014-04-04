@@ -5,33 +5,51 @@ public interface AnalizadorSintacticoTinyConstants {
 
   int EOF = 0;
   int letra = 1;
-  int digitoPositivo = 2;
-  int digito = 3;
-  int parteEntera = 4;
-  int parteDecimal = 5;
-  int donde = 8;
-  int evalua = 9;
-  int identificador = 10;
-  int numeroEntero = 11;
-  int numeroReal = 12;
+  int digito = 2;
+  int parteEntera = 3;
+  int eq = 4;
+  int neq = 5;
+  int gt = 6;
+  int egt = 7;
+  int lt = 8;
+  int elt = 9;
+  int and = 10;
+  int or = 11;
+  int not = 12;
+  int bool = 13;
+  int integer = 14;
+  int tru = 15;
+  int fals = 16;
+  int sepsec = 17;
+  int identificador = 20;
+  int numeroEntero = 21;
 
   int DEFAULT = 0;
 
   String[] tokenImage = {
     "<EOF>",
     "<letra>",
-    "<digitoPositivo>",
     "<digito>",
     "<parteEntera>",
-    "<parteDecimal>",
-    "<token of kind 6>",
-    "<token of kind 7>",
-    "\"donde\"",
-    "\"evalua\"",
+    "\"==\"",
+    "\"!=\"",
+    "\">\"",
+    "\">=\"",
+    "\"<\"",
+    "\"<=\"",
+    "\"and\"",
+    "\"or\"",
+    "\"not\"",
+    "\"bool\"",
+    "\"int\"",
+    "\"true\"",
+    "\"false\"",
+    "\"&&\"",
+    "<token of kind 18>",
+    "<token of kind 19>",
     "<identificador>",
     "<numeroEntero>",
-    "<numeroReal>",
-    "\",\"",
+    "\";\"",
     "\"=\"",
     "\"(\"",
     "\")\"",

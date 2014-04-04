@@ -1,8 +1,11 @@
 package manual.alex;
+
 import manual.errors.GestionErroresTiny;
 
 
-public class AnalizadorLexicoTiny {
+@SuppressWarnings("unused")
+public
+class AnalizadorLexicoTiny {
 	private final int YY_BUFFER_SIZE = 512;
 	private final int YY_F = -1;
 	private final int YY_NO_STATE = -1;
@@ -14,12 +17,8 @@ public class AnalizadorLexicoTiny {
 	private final int YY_EOF = 65537;
 
   private ALexOperations ops;
-  private GestionErroresTiny errores;
   public String lexema() {return yytext();}
   public int fila() {return yyline+1;}
-  public void fijaGestionErrores(GestionErroresTiny errores) {
-   this.errores = errores;
-  }
 	private java.io.BufferedReader yy_reader;
 	private int yy_buffer_index;
 	private int yy_buffer_read;
@@ -240,22 +239,50 @@ public class AnalizadorLexicoTiny {
 		/* 24 */ YY_NO_ANCHOR,
 		/* 25 */ YY_NO_ANCHOR,
 		/* 26 */ YY_NO_ANCHOR,
-		/* 27 */ YY_NO_ANCHOR
+		/* 27 */ YY_NO_ANCHOR,
+		/* 28 */ YY_NO_ANCHOR,
+		/* 29 */ YY_NO_ANCHOR,
+		/* 30 */ YY_NO_ANCHOR,
+		/* 31 */ YY_NO_ANCHOR,
+		/* 32 */ YY_NO_ANCHOR,
+		/* 33 */ YY_NO_ANCHOR,
+		/* 34 */ YY_NO_ANCHOR,
+		/* 35 */ YY_NO_ANCHOR,
+		/* 36 */ YY_NO_ANCHOR,
+		/* 37 */ YY_NO_ANCHOR,
+		/* 38 */ YY_NO_ANCHOR,
+		/* 39 */ YY_NO_ANCHOR,
+		/* 40 */ YY_NO_ANCHOR,
+		/* 41 */ YY_NO_ANCHOR,
+		/* 42 */ YY_NO_ANCHOR,
+		/* 43 */ YY_NO_ANCHOR,
+		/* 44 */ YY_NO_ANCHOR,
+		/* 45 */ YY_NO_ANCHOR,
+		/* 46 */ YY_NO_ANCHOR,
+		/* 47 */ YY_NO_ANCHOR,
+		/* 48 */ YY_NO_ANCHOR
 	};
 	private int yy_cmap[] = unpackFromString(1,65538,
-"3:8,4:2,1,3:2,4,3:18,4,3:2,2,3:4,23,24,21,19,17,20,18,22,16,15:9,3:3,25,3:3" +
-",13:26,3:6,7,14:2,10,5,14:6,8,14,12,11,14:5,9,6,14:4,3:65413,0:2")[0];
+"32:8,1:3,32:2,1,32:18,1,3,32:4,19,32,29,30,27,25,24,26,32,28,22:10,32,31,5," +
+"2,4,32:2,20:26,32:4,23,32,6,12,21,8,16,17,21:2,14,21:2,13,21,7,9,21:2,10,18" +
+",11,15,21:5,32:65413,0:2")[0];
 
-	private int yy_rmap[] = unpackFromString(1,28,
-"0,1:2,2,1,3,4,5:3,1:5,6,7:2,8,9,10,11,12,13,14,15,7:2")[0];
+	private int yy_rmap[] = unpackFromString(1,49,
+"0,1:2,2,3,4,5,6,7:3,1:9,8,1,8:6,9,10,1,11,7,8,12,13,14,15,16,17,18,19,20,21" +
+",8,22,23,24,25")[0];
 
-	private int yy_nxt[][] = unpackFromString(16,26,
-"1,2,3,4,2,5,27:4,24,27:4,6,4,7,4,8,9,10,11,12,13,14,-1:28,3:24,-1:5,27,25,2" +
-"7:6,26,27,26:2,-1:24,6:2,-1,15,-1:22,6,-1:25,15:2,-1:14,27:8,26,27,26:2,-1:" +
-"14,16,27:7,26,27,26:2,-1:14,27:2,17,27:5,26,27,26:2,-1:14,27:5,18,27:2,26,2" +
-"7,26:2,-1:14,27:4,19,27:3,26,27,26:2,-1:14,27:7,20,26,27,26:2,-1:14,27:3,21" +
-",27:4,26,27,26:2,-1:14,27:6,22,27,26,27,26:2,-1:14,27:2,23,27:5,26,27,26:2," +
-"-1:9");
+	private int yy_nxt[][] = unpackFromString(26,33,
+"1,2,3,4,5,6,7,43,44,29,44,45,46,44,47,44:2,48,44,28,44:2,8,30,32,9,10,11,12" +
+",13,14,15,30,-1:35,16,-1:32,17,-1:32,18,-1:32,19,-1:36,44,31,44:11,-1,33,44" +
+",33:2,-1:31,8,-1:16,44:13,-1,33,44,33:2,-1:28,21,-1:19,44:4,20,44:8,-1,33,4" +
+"4,33:2,-1:15,44:2,22,44:10,-1,33,44,33:2,-1:15,44:5,23,44:7,-1,33,44,33:2,-" +
+"1:15,44:9,39,44:3,-1,33,44,33:2,-1:15,44:3,40,44:9,-1,33,44,33:2,-1:15,44:5" +
+",24,44:7,-1,33,44,33:2,-1:15,44:7,41,44:5,-1,33,44,33:2,-1:15,44:10,25,44:2" +
+",-1,33,44,33:2,-1:15,44:7,26,44:5,-1,33,44,33:2,-1:15,44:12,42,-1,33,44,33:" +
+"2,-1:15,44:10,27,44:2,-1,33,44,33:2,-1:15,44:3,34,44:9,-1,33,44,33:2,-1:15," +
+"44:4,35,44:8,-1,33,44,33:2,-1:15,44:3,36,44:9,-1,33,44,33:2,-1:15,44,37,44:" +
+"11,-1,33,44,33:2,-1:15,38,44:12,-1,33,44,33:2,-1:9");
+	private GestionErroresTiny errores;
 
 	public UnidadLexica yylex ()
 		throws java.io.IOException {
@@ -311,104 +338,188 @@ public class AnalizadorLexicoTiny {
 					case -3:
 						break;
 					case 3:
-						{}
+						{return ops.unidadAsig();}
 					case -4:
 						break;
 					case 4:
-						{errores.errorLexico(fila(),lexema());}
+						{errores.errorLexico(fila(), lexema());}
 					case -5:
 						break;
 					case 5:
-						{return ops.unidadId();}
+						{return ops.unidadGT();}
 					case -6:
 						break;
 					case 6:
-						{return ops.unidadEnt();}
+						{return ops.unidadLT();}
 					case -7:
 						break;
 					case 7:
-						{return ops.unidadComa();}
+						{return ops.unidadId();}
 					case -8:
 						break;
 					case 8:
-						{return ops.unidadSuma();}
+						{return ops.unidadEnt();}
 					case -9:
 						break;
 					case 9:
-						{return ops.unidadResta();}
+						{return ops.unidadMas();}
 					case -10:
 						break;
 					case 10:
-						{return ops.unidadMul();}
+						{return ops.unidadMenos();}
 					case -11:
 						break;
 					case 11:
-						{return ops.unidadDiv();}
+						{return ops.unidadPor();}
 					case -12:
 						break;
 					case 12:
-						{return ops.unidadPAp();}
+						{return ops.unidadDiv();}
 					case -13:
 						break;
 					case 13:
-						{return ops.unidadPCierre();}
+						{return ops.unidadPAp();}
 					case -14:
 						break;
 					case 14:
-						{return ops.unidadIgual();}
+						{return ops.unidadPCierre();}
 					case -15:
 						break;
 					case 15:
-						{return ops.unidadReal();}
+						{return ops.unidadPuntoComa();}
 					case -16:
 						break;
 					case 16:
-						{return ops.unidadDonde();}
+						{return ops.unidadEQ();}
 					case -17:
 						break;
 					case 17:
-						{return ops.unidadEvalua();}
+						{return ops.unidadNEQ();}
 					case -18:
 						break;
 					case 18:
-						{return ops.unidadId();}
+						{return ops.unidadEGT();}
 					case -19:
 						break;
 					case 19:
-						{return ops.unidadId();}
+						{return ops.unidadELT();}
 					case -20:
 						break;
 					case 20:
-						{return ops.unidadId();}
+						{return ops.unidadOr();}
 					case -21:
 						break;
 					case 21:
-						{return ops.unidadId();}
+						{return ops.unidadSepSec();}
 					case -22:
 						break;
 					case 22:
-						{return ops.unidadId();}
+						{return ops.unidadAnd();}
 					case -23:
 						break;
 					case 23:
-						{return ops.unidadId();}
+						{return ops.unidadNot();}
 					case -24:
 						break;
 					case 24:
-						{return ops.unidadId();}
+						{return ops.unidadInt();}
 					case -25:
 						break;
 					case 25:
-						{return ops.unidadId();}
+						{return ops.unidadTrue();}
 					case -26:
 						break;
 					case 26:
-						{return ops.unidadId();}
+						{return ops.unidadBool();}
 					case -27:
 						break;
 					case 27:
-						{return ops.unidadId();}
+						{return ops.unidadFalse();}
 					case -28:
+						break;
+					case 28:
+						{errores.errorLexico(fila(), lexema());}
+					case -29:
+						break;
+					case 29:
+						{return ops.unidadId();}
+					case -30:
+						break;
+					case 30:
+						{errores.errorLexico(fila(), lexema());}
+					case -31:
+						break;
+					case 31:
+						{return ops.unidadId();}
+					case -32:
+						break;
+					case 32:
+						{errores.errorLexico(fila(), lexema());}
+					case -33:
+						break;
+					case 33:
+						{return ops.unidadId();}
+					case -34:
+						break;
+					case 34:
+						{return ops.unidadId();}
+					case -35:
+						break;
+					case 35:
+						{return ops.unidadId();}
+					case -36:
+						break;
+					case 36:
+						{return ops.unidadId();}
+					case -37:
+						break;
+					case 37:
+						{return ops.unidadId();}
+					case -38:
+						break;
+					case 38:
+						{return ops.unidadId();}
+					case -39:
+						break;
+					case 39:
+						{return ops.unidadId();}
+					case -40:
+						break;
+					case 40:
+						{return ops.unidadId();}
+					case -41:
+						break;
+					case 41:
+						{return ops.unidadId();}
+					case -42:
+						break;
+					case 42:
+						{return ops.unidadId();}
+					case -43:
+						break;
+					case 43:
+						{return ops.unidadId();}
+					case -44:
+						break;
+					case 44:
+						{return ops.unidadId();}
+					case -45:
+						break;
+					case 45:
+						{return ops.unidadId();}
+					case -46:
+						break;
+					case 46:
+						{return ops.unidadId();}
+					case -47:
+						break;
+					case 47:
+						{return ops.unidadId();}
+					case -48:
+						break;
+					case 48:
+						{return ops.unidadId();}
+					case -49:
 						break;
 					default:
 						yy_error(YY_E_INTERNAL,false);
@@ -427,5 +538,8 @@ public class AnalizadorLexicoTiny {
 				}
 			}
 		}
+	}
+	public void fijaGestionErrores(GestionErroresTiny errores) {
+		this.errores = errores;
 	}
 }

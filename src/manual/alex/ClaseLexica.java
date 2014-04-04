@@ -1,6 +1,13 @@
 package manual.alex;
 
 public enum ClaseLexica {
- IDEN, ENT, REAL, PAP, PCIERRE, IGUAL, COMA, 
- MAS, MENOS, POR, DIV, EVALUA, DONDE, EOF
+	NEQ, EQ, GT, EGT, LT, ELT,
+	IDEN, ENT, PAP, 
+	PCIERRE, PUNTOCOMA, 
+	MAS, MENOS, POR, DIV, 
+	ASIG, SEPSEC, 
+	AND, OR, NOT, 
+	BOOL, INT,
+	TRUE, FALSE,
+	EOF 
 }
