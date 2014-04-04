@@ -18,11 +18,9 @@ public interface AnalizadorSintacticoTinyConstants {
   int not = 12;
   int bool = 13;
   int integer = 14;
-  int tru = 15;
-  int fals = 16;
-  int sepsec = 17;
-  int identificador = 20;
-  int numeroEntero = 21;
+  int sepsec = 15;
+  int identificador = 18;
+  int numeroEntero = 19;
 
   int DEFAULT = 0;
 
@@ -42,15 +40,15 @@ public interface AnalizadorSintacticoTinyConstants {
     "\"not\"",
     "\"bool\"",
     "\"int\"",
-    "\"true\"",
-    "\"false\"",
     "\"&&\"",
-    "<token of kind 18>",
-    "<token of kind 19>",
+    "<token of kind 16>",
+    "<token of kind 17>",
     "<identificador>",
     "<numeroEntero>",
     "\";\"",
     "\"=\"",
+    "\"true\"",
+    "\"false\"",
     "\"(\"",
     "\")\"",
     "\"+\"",

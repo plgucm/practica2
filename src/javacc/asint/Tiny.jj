@@ -20,8 +20,6 @@ PARSER_END(AnalizadorSintacticoTiny)
   TOKEN:{<not:"not">} 
   TOKEN:{<bool:"bool">} 
   TOKEN:{<integer:"int">} 
-  TOKEN:{<tru:"true">} 
-  TOKEN:{<fals:"false">} 
   TOKEN:{<sepsec:"&&">} 
   SKIP:{<["\t"," ","\r","\b","\n"]>}  
   SKIP:{<"#"(~["\n"])*>}  
@@ -29,18 +27,21 @@ PARSER_END(AnalizadorSintacticoTiny)
   TOKEN:{<numeroEntero: (["+","-"])? <parteEntera> >}
   
   void Sp()   : {} {S() <EOF>}
-  void T()	  : {} {<bool> | <integer>}
-  void S1()   : {} {T() S1() | S()} 
-  void S()    : {} {E0() Ds()}
-  void Ds()   : {} {<sepsec> LDs() | {} }  
-  void LDs()  : {} {D() RLDs()}
-  void RLDs() : {} {";" D() RLDs() | {} }
-  void D()    : {} {<identificador> "=" E0()}
+  void S()    : {} {X() <sepsec> E()}
+  void X()    : {} {XD() RXD()}
+  void RXD()  : {} {";" XD() RXD() | {}}
+  void XD()   : {} {<bool> <identificador> | <integer> <numeroEntero>}
+  void E()    : {} {E0() RE()}
+  void RE()   : {} { ";" E0() RE() | {}}
   void E0()   : {} {E1() RE0()}
-  void RE0()  : {} {OP0() E1() RE0() | {} }
-  void E1()   : {} {E2() RE1() }
-  void RE1()  : {} {OP1() E2() RE1() | {} }
-  void E2()   : {} {<numeroEntero> | <identificador> | "(" E0() ")"} 
-  void OP0()  : {} {"+" | "-"}
-  void OP1()  : {} {"*" | "/"}
-  
+  void RE0()  : {} {OP0() E1() | "=" E0() | {}}
+  void E1()   : {} {E2() RE1()}
+  void RE1()  : {} {OP1() E2() RE1() | {}}
+  void E2()   : {} {E3() RE2()}
+  void RE2()  : {} {OP2() E3() RE2() | {}}
+  void E3()   : {} {OP3() E3() | E4()}
+  void E4()   : {} {<identificador> | <numeroEntero> | "true" | "false" | "(" E0() ")"}
+  void OP0()  : {} { <lt> | <elt> | <gt> | <egt> | <eq> | <neq> }
+  void OP1()  : {} { "+" | "-" | <or> }
+  void OP2()  : {} { "*" | "/" | <and> }
+  void OP3()  : {} { "-" | <not> } 

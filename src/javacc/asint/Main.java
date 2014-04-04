@@ -6,7 +6,7 @@ import manual.asint.AnalizadorSintacticoTiny;
 
 public class Main{
    public static void main(String[] args) throws Exception {
-      AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(new FileReader(args[0]));
+      AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(new FileReader(args == null ? "input.txt" : args[0]));
 	  asint.Sp();
    }
 }

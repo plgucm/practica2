@@ -1,0 +1,47 @@
+Prioridad 0 
+<, >, <=, >=, !=, == binario, no asociativo.
+asig binario, asocia derecha
+
+Prioridad 1 
++, -, or binario, asociativo a izquierda
+
+Prioridad 2 
+*, /, and binario, asociativo a izquierda
+
+Prioridad 3 
+-, not unarios, asocian.
+
+Prioridad 5 	
+(, ), números, identificadores, true, false
+
+
+//
+Proletool:
+
+http://portal.esi.uclm.es/proletool/compilerEntry.py
+
+//
+
+grammar practica2
+{
+	analysis LL1;
+	nonterminal Sp, S, X, XD, RXD, E, RE, E0, E1, E2, E3, E4, RE0, RE1, RE2;
+	terminal OP0, OP1, OP2, OP3, OP4, igual, id, num, pariz, pardr, tipo, sepsec, puntocoma, bool, int, true, false;
+	
+	Sp := S;
+	S := X sepsec E;
+	X := XD RXD;
+	RXD := puntocoma XD RXD | ;
+	XD := bool id | int id;
+           E := E0 RE;
+	RE := puntocoma E0 RE | ;
+
+	E0 := E1 RE0;
+	RE0 := OP0 E1 | igual E0 | ;
+           E1 := E2 RE1;
+	RE1 := OP1 E2 RE1 | ;
+           E2 := E3 RE2;
+	RE2 := OP2 E3 RE2 | ;
+	E3 := OP3 E3 | E4;
+	E4 := id | num |  true | false | pariz E0 pardr;
+}
