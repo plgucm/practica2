@@ -3,4 +3,4 @@ bool pesado
 &&
 peso = (45 * 12) / 2;
 pesado = (peso > 10) or (peso / 2 == 4);
-miBool = true and false
+miBool = not true + 10

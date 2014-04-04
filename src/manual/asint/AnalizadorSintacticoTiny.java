@@ -89,6 +89,8 @@ public class AnalizadorSintacticoTiny {
 
 	private void E() {
 		switch (anticipo.clase()) {
+		case TRUE:
+		case FALSE:
 		case NOT:
 		case MENOS:
 		case ID:
@@ -106,6 +108,8 @@ public class AnalizadorSintacticoTiny {
 
 	private void E0() {
 		switch (anticipo.clase()) {
+		case TRUE:
+		case FALSE:
 		case NOT:
 		case MENOS:
 		case ID:
@@ -123,6 +127,8 @@ public class AnalizadorSintacticoTiny {
 
 	private void E1() {
 		switch (anticipo.clase()) {
+		case TRUE:
+		case FALSE:
 		case NOT:
 		case MENOS:
 		case ID:
@@ -140,6 +146,8 @@ public class AnalizadorSintacticoTiny {
 
 	private void E2() {
 		switch (anticipo.clase()) {
+		case TRUE:
+		case FALSE:
 		case NOT:
 		case MENOS:
 		case ID:
@@ -165,6 +173,8 @@ public class AnalizadorSintacticoTiny {
 		case ID:
 		case NUM:
 		case PAP:
+		case TRUE:
+		case FALSE:
 			E4();
 			break;
 		default:
@@ -178,6 +188,8 @@ public class AnalizadorSintacticoTiny {
 		switch (anticipo.clase()) {
 		case ID:
 		case NUM:
+		case TRUE:
+		case FALSE:
 			empareja(anticipo.clase());
 			break;
 		case PAP:
