@@ -19,19 +19,31 @@ init with {:
 :};
 
 
-terminal     DONDE, EVALUA, IDEN, ENT, REAL, MAS,
-             MENOS, POR, DIV, IGUAL, COMA, PAP, PCIERRE;
+terminal     ID, NUM, MAS, MENOS, POR, DIV, PAP, PCIERRE, 
+			ASIG, PUNTOCOMA, NEQ, EQ, GT, EGT, LT, ELT, 
+			BOOL, INT, AND, OR, NOT, TRUE, FALSE, SEPSEC;
 
-non terminal  S, Ds, LDs, D, E0, E1, E2, OP0, OP1;
+non terminal  Sp, S, X, RXD, XD, E, RE, E0, RE0, E1, RE1, 
+			E2, RE2, E3, E4, OP0, OP1, OP2, OP3;
 
-S   ::= EVALUA E0 Ds ;
-Ds  ::= DONDE LDs | ;
-LDs ::= LDs COMA D | D ;
-D   ::= IDEN IGUAL E0 ;
-E0  ::= E0 OP0 E1  | E1 ;
-E1  ::= E1 OP1 E2  | E2 ;
-E2  ::= ENT  | REAL  | IDEN  | PAP E0 PCIERRE ;  
-OP0 ::= MAS  | MENOS ;
-OP1 ::= POR | DIV ;
+Sp  ::= S | ;
+S   ::= X SEPSEC E ;
+X   ::= XD RXD ;
+RXD ::= PUNTOCOMA XD RXD | ;
+XD  ::= BOOL ID | INT ID ;
+E   ::= E0 RE ;
+RE  ::= PUNTOCOMA E0 RE | ;
+E0  ::= E1 RE0 ;
+RE0 ::= OP0 E1 | ASIG E0 | ;
+E1  ::= E2 RE1 ;
+RE1 ::= OP1 E2 RE1 | ;
+E2  ::= E3 RE2 ;
+RE2 ::= OP2 E3 RE2 | ;
+E3  ::= OP3 E3 | E4 ;
+E4  ::= ID | NUM | TRUE | FALSE | PAP E0 PCIERRE ;
+OP0 ::= EQ  | NEQ | GT | EGT | LT | ELT ;
+OP1 ::= MAS | MENOS | OR ;
+OP2 ::= POR | DIV | AND ;
+OP3 ::= MENOS | NOT ;
 
 

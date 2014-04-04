@@ -9,6 +9,6 @@ public class UnidadLexica extends Symbol {
 	 this.fila = fila;
    }
    public int clase () {return sym;}
-   public String lexema() {return (String)value;}
+   public String lexema() {return value.toString();}
    public int fila() {return fila;}
 }
