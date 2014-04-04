@@ -2,7 +2,7 @@ package manual.alex;
 
 public enum ClaseLexica {
 	NEQ, EQ, GT, EGT, LT, ELT,
-	IDEN, ENT, PAP, 
+	ID, NUM, PAP, 
 	PCIERRE, PUNTOCOMA, 
 	MAS, MENOS, POR, DIV, 
 	ASIG, SEPSEC, 

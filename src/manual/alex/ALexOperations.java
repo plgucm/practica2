@@ -6,11 +6,11 @@ public class ALexOperations {
 		this.alex = alex;   
 	}
 	public UnidadLexica unidadId() {
-		return new UnidadLexicaMultivaluada(alex.fila(),ClaseLexica.IDEN,
+		return new UnidadLexicaMultivaluada(alex.fila(),ClaseLexica.ID,
 				alex.lexema()); 
 	} 
 	public UnidadLexica unidadEnt() {
-		return new UnidadLexicaMultivaluada(alex.fila(),ClaseLexica.ENT,alex.lexema()); 
+		return new UnidadLexicaMultivaluada(alex.fila(),ClaseLexica.NUM,alex.lexema()); 
 	}
 	public UnidadLexica unidadMas() {
 		return new UnidadLexicaUnivaluada(alex.fila(),ClaseLexica.MAS); 

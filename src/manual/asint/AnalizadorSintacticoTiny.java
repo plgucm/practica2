@@ -60,11 +60,11 @@ public class AnalizadorSintacticoTiny {
 		switch (anticipo.clase()) {
 		case BOOL:
 			empareja(ClaseLexica.BOOL);
-			empareja(ClaseLexica.IDEN);
+			empareja(ClaseLexica.ID);
 			break;
 		case INT:
 			empareja(ClaseLexica.INT);
-			empareja(ClaseLexica.IDEN);
+			empareja(ClaseLexica.ID);
 			break;
 		default:
 			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
@@ -89,17 +89,105 @@ public class AnalizadorSintacticoTiny {
 
 	private void E() {
 		switch (anticipo.clase()) {
+		case NOT:
 		case MENOS:
-		case IDEN:
-		case ENT:
+		case ID:
+		case NUM:
 		case PAP:
 			E0();
 			RE();
 			break;
 		default:
 			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.MENOS, ClaseLexica.IDEN, ClaseLexica.ENT,
-					ClaseLexica.PAP);
+					ClaseLexica.NOT, ClaseLexica.MENOS, ClaseLexica.ID,
+					ClaseLexica.NUM, ClaseLexica.PAP);
+		}
+	}
+
+	private void E0() {
+		switch (anticipo.clase()) {
+		case NOT:
+		case MENOS:
+		case ID:
+		case NUM:
+		case PAP:
+			E1();
+			RE0();
+			break;
+		default:
+			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
+					ClaseLexica.NOT, ClaseLexica.MENOS, ClaseLexica.ID,
+					ClaseLexica.NUM, ClaseLexica.PAP);
+		}
+	}
+
+	private void E1() {
+		switch (anticipo.clase()) {
+		case NOT:
+		case MENOS:
+		case ID:
+		case NUM:
+		case PAP:
+			E2();
+			RE1();
+			break;
+		default:
+			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
+					ClaseLexica.NOT, ClaseLexica.MENOS, ClaseLexica.ID,
+					ClaseLexica.NUM, ClaseLexica.PAP);
+		}
+	}
+
+	private void E2() {
+		switch (anticipo.clase()) {
+		case NOT:
+		case MENOS:
+		case ID:
+		case NUM:
+		case PAP:
+			E3();
+			RE2();
+			break;
+		default:
+			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
+					ClaseLexica.NOT, ClaseLexica.MENOS, ClaseLexica.ID,
+					ClaseLexica.NUM, ClaseLexica.PAP);
+		}
+	}
+
+	private void E3() {
+		switch (anticipo.clase()) {
+		case NOT:
+		case MENOS:
+			empareja(anticipo.clase());
+			E3();
+			break;
+		case ID:
+		case NUM:
+		case PAP:
+			E4();
+			break;
+		default:
+			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
+					ClaseLexica.NOT, ClaseLexica.MENOS, ClaseLexica.ID,
+					ClaseLexica.NUM, ClaseLexica.PAP);
+		}
+	}
+
+	private void E4() {
+		switch (anticipo.clase()) {
+		case ID:
+		case NUM:
+			empareja(anticipo.clase());
+			break;
+		case PAP:
+			empareja(ClaseLexica.PAP);
+			E0();
+			empareja(ClaseLexica.PCIERRE);
+			break;
+		default:
+			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
+					ClaseLexica.ID, ClaseLexica.NUM, ClaseLexica.PAP);
 		}
 	}
 
@@ -115,22 +203,6 @@ public class AnalizadorSintacticoTiny {
 		default:
 			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
 					ClaseLexica.PUNTOCOMA, ClaseLexica.SEPSEC);
-		}
-	}
-
-	private void E0() {
-		switch (anticipo.clase()) {
-		case MENOS:
-		case IDEN:
-		case ENT:
-		case PAP:
-			E1();
-			RE0();
-			break;
-		default:
-			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.MENOS, ClaseLexica.IDEN, ClaseLexica.ENT,
-					ClaseLexica.PAP);
 		}
 	}
 
@@ -162,37 +234,7 @@ public class AnalizadorSintacticoTiny {
 		}
 	}
 
-	private void E1() {
-		switch (anticipo.clase()) {
-		case MENOS:
-		case IDEN:
-		case ENT:
-		case PAP:
-			E2();
-			RE1();
-			break;
-		default:
-			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.MENOS, ClaseLexica.IDEN, ClaseLexica.ENT,
-					ClaseLexica.PAP);
-		}
-	}
-
 	private void RE1() {
-		switch (anticipo.clase()) {
-		case MAS:
-		case MENOS:
-		case OR:
-			empareja(anticipo.clase());
-			RE11();
-			break;
-		default:
-			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.MAS, ClaseLexica.MENOS, ClaseLexica.OR);
-		}
-	}
-
-	private void RE11() {
 		switch (anticipo.clase()) {
 		case LT:
 		case ELT:
@@ -200,150 +242,59 @@ public class AnalizadorSintacticoTiny {
 		case EGT:
 		case NEQ:
 		case EQ:
-			break;
-		case MAS:
-		case OR:
-			break;
-		case MENOS: // OP1 (MENOS BINARIO) y OP3 (MENOS UNARIO)??
-			E1();
-			RE1();
-			break;
-		case IDEN:
-		case ENT:
-		case PAP:
-			E1();
-			RE1();
-			break;
 		case ASIG:
 		case PCIERRE:
 		case PUNTOCOMA:
 		case EOF:
 			break;
+		case MAS:
+		case MENOS:
+		case OR:
+			empareja(anticipo.clase());
+			E2();
+			RE1();
+			break;
 		default:
 			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
 					ClaseLexica.LT, ClaseLexica.ELT, ClaseLexica.GT,
 					ClaseLexica.EGT, ClaseLexica.NEQ, ClaseLexica.EQ,
-					ClaseLexica.MAS, ClaseLexica.OR, ClaseLexica.MENOS,
-					ClaseLexica.IDEN, ClaseLexica.ENT, ClaseLexica.PAP,
 					ClaseLexica.ASIG, ClaseLexica.PCIERRE,
-					ClaseLexica.PUNTOCOMA, ClaseLexica.EOF);
-		}
-	}
-
-	private void E2() {
-		switch (anticipo.clase()) {
-		case MENOS:
-		case IDEN:
-		case ENT:
-		case PAP:
-			E3();
-			RE2();
-			break;
-		default:
-			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.MENOS, ClaseLexica.IDEN, ClaseLexica.ENT,
-					ClaseLexica.PAP);
+					ClaseLexica.PUNTOCOMA, ClaseLexica.EOF, ClaseLexica.MAS,
+					ClaseLexica.MENOS, ClaseLexica.OR);
 		}
 	}
 
 	private void RE2() {
 		switch (anticipo.clase()) {
-		case POR:
-		case DIV:
-		case AND:
-			empareja(anticipo.clase());
-			RE22();
-			break;
-		default:
-			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.POR, ClaseLexica.DIV, ClaseLexica.AND);
-		}
-	}
-
-	private void RE22() {
-		switch (anticipo.clase()) {
+		case LT:
+		case ELT:
+		case GT:
+		case EGT:
+		case NEQ:
+		case EQ:
 		case MAS:
+		case MENOS:
 		case OR:
+		case ASIG:
+		case PCIERRE:
+		case PUNTOCOMA:
+		case EOF:
 			break;
 		case POR:
 		case DIV:
 		case AND:
-			break;
-		case MENOS: // OP1 (MENOS BINARIO) y OP3 (MENOS UNARIO)??
-			E2();
-			RE2();
-			break;
-		case IDEN:
-		case ENT:
-		case PAP:
-			E2();
-			RE2();
-			break;
-		default:
-			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.MAS, ClaseLexica.OR, ClaseLexica.POR,
-					ClaseLexica.DIV, ClaseLexica.AND, ClaseLexica.MENOS,
-					ClaseLexica.IDEN, ClaseLexica.ENT, ClaseLexica.PAP);
-		}
-	}
-
-	private void E3() {
-		switch (anticipo.clase()) {
-		case MENOS:
-			empareja(ClaseLexica.MENOS);
-			E4();
-			break;
-		case IDEN:
-		case ENT:
-		case PAP:
-			E4();
-			break;
-		default:
-			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.MENOS, ClaseLexica.IDEN, ClaseLexica.ENT,
-					ClaseLexica.PAP);
-		}
-	}
-
-	private void E4() {
-		switch (anticipo.clase()) {
-		case IDEN:
-		case ENT:
-		case PAP:
-			E5();
-			RE4();
-			break;
-		default:
-			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.IDEN, ClaseLexica.ENT, ClaseLexica.PAP);
-		}
-	}
-
-	private void RE4() {
-		switch (anticipo.clase()) {
-		case MENOS:
-			break;
-		//case OP4: ?CUAL ES OP4??
-		default:
-			/*errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.MENOS);*/
-		}
-	}
-
-	private void E5() {
-		switch (anticipo.clase()) {
-		case IDEN:
-		case ENT:
 			empareja(anticipo.clase());
-			break;
-		case PAP:
-			empareja(ClaseLexica.PAP);
-			E0();
-			empareja(ClaseLexica.PCIERRE);
+			E3();
+			RE2();
 			break;
 		default:
 			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.IDEN, ClaseLexica.ENT, ClaseLexica.PAP);
+					ClaseLexica.LT, ClaseLexica.ELT, ClaseLexica.GT,
+					ClaseLexica.EGT, ClaseLexica.NEQ, ClaseLexica.EQ,
+					ClaseLexica.ASIG, ClaseLexica.PCIERRE,
+					ClaseLexica.PUNTOCOMA, ClaseLexica.EOF, ClaseLexica.MAS,
+					ClaseLexica.MENOS, ClaseLexica.OR, ClaseLexica.POR,
+					ClaseLexica.DIV, ClaseLexica.AND);
 		}
 	}
 
