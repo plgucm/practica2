@@ -30,7 +30,7 @@ PARSER_END(AnalizadorSintacticoTiny)
   void S()    : {} {X() <sepsec> E()}
   void X()    : {} {XD() RXD()}
   void RXD()  : {} {";" XD() RXD() | {}}
-  void XD()   : {} {<bool> <identificador> | <integer> <numeroEntero>}
+  void XD()   : {} {<bool> <identificador> | <integer> <identificador>}
   void E()    : {} {E0() RE()}
   void RE()   : {} { ";" E0() RE() | {}}
   void E0()   : {} {E1() RE0()}

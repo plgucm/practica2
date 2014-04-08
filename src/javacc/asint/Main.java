@@ -2,7 +2,6 @@ package javacc.asint;
 
 import java.io.FileReader;
 
-import manual.asint.AnalizadorSintacticoTiny;
 
 public class Main {
 	public static void main(String[] args) throws Exception {

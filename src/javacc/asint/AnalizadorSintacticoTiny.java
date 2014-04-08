@@ -40,7 +40,7 @@ public class AnalizadorSintacticoTiny implements AnalizadorSintacticoTinyConstan
       break;
     case integer:
       jj_consume_token(integer);
-      jj_consume_token(numeroEntero);
+      jj_consume_token(identificador);
       break;
     default:
       jj_la1[1] = jj_gen;
