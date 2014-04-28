@@ -23,8 +23,7 @@ public class AnalizadorSintacticoTiny implements AnalizadorSintacticoTinyConstan
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case 20:
       jj_consume_token(20);
-      XD();
-      RXD();
+      X();
       break;
     default:
       jj_la1[0] = jj_gen;
@@ -58,8 +57,7 @@ public class AnalizadorSintacticoTiny implements AnalizadorSintacticoTinyConstan
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case 20:
       jj_consume_token(20);
-      E0();
-      RE();
+      E();
       break;
     default:
       jj_la1[2] = jj_gen;

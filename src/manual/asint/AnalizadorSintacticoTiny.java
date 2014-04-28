@@ -76,8 +76,9 @@ public class AnalizadorSintacticoTiny {
 		switch (anticipo.clase()) {
 		case PUNTOCOMA:
 			empareja(ClaseLexica.PUNTOCOMA);
-			XD();
-			RXD();
+//			XD();
+//			RXD();
+			X();
 			break;
 		case SEPSEC:
 			break;
@@ -207,8 +208,9 @@ public class AnalizadorSintacticoTiny {
 		switch (anticipo.clase()) {
 		case PUNTOCOMA:
 			empareja(ClaseLexica.PUNTOCOMA);
-			E0();
-			RE();
+//			E0();
+//			RE();
+			E();
 			break;
 		case EOF:
 			break;
