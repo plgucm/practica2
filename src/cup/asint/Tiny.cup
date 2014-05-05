@@ -19,26 +19,30 @@ init with {:
 :};
 
 
-terminal     ID, NUM, MAS, MENOS, POR, DIV, PAP, PCIERRE, 
-			ASIG, PUNTOCOMA, NEQ, EQ, GT, EGT, LT, ELT, 
-			BOOL, INT, AND, OR, NOT, TRUE, FALSE, SEPSEC;
+terminal     	ID, NUM, MAS, MENOS, POR, DIV, PAP, PCIERRE, 
+				ASIG, PUNTOCOMA, NEQ, EQ, GT, EGT, LT, ELT, 
+				BOOL, INT, AND, OR, NOT, TRUE, FALSE, SEPSEC;
 
-non terminal  Sp, S, X, XD, E, RE, E0, E1, E2, E3, E4, OP0, OP1, OP2, OP3;
+non terminal  	ProgramaPrima, Programa, Declaraciones, Declaracion, 
+				Instrucciones, Instruccion, InstruccionAsig,
+				E0, E1, E2, E3, E4, OP0, OP1, OP2, OP3;
 
-Sp  ::= S | ;
-S   ::= X SEPSEC E ;
-X   ::= XD PUNTOCOMA X | XD ;
-XD  ::= BOOL ID | INT ID ;
-E   ::= E0 PUNTOCOMA E | E0 ;
-E0  ::= E1 OP0 E1 | E1 ASIG E0 | E1 ;
-E1  ::= E1 OP1 E2 | E2 ;
-E2  ::= E2 OP2 E3 | E3 ;
-E3  ::= OP3 E3 | E4 ;
-E4  ::= ID | NUM | TRUE | FALSE | PAP E0 PCIERRE ;
-OP0 ::= EQ  | NEQ | GT | EGT | LT | ELT ;
-OP1 ::= MAS | MENOS | OR ;
-OP2 ::= POR | DIV | AND ;
-OP3 ::= MENOS | NOT ;
+ProgramaPrima  	::= Programa ;
+Programa   		::= Declaraciones SEPSEC Instrucciones | ;
+Declaraciones   ::= Declaracion PUNTOCOMA Declaraciones | Declaracion ;
+Declaracion  	::= BOOL ID | INT ID ;
+Instrucciones   ::= Instruccion PUNTOCOMA Instrucciones | Instruccion ;
+Instruccion		::= InstruccionAsig ;
+InstruccionAsig ::= ID ASIG E0 ;
+E0  			::= E1 OP0 E1 | E1 ;
+E1  			::= E1 OP1 E2 | E2 ;
+E2  			::= E2 OP2 E3 | E3 ;
+E3  			::= OP3 E3 | E4 ;
+E4  			::= ID | NUM | TRUE | FALSE | PAP E0 PCIERRE ;
+OP0 			::= EQ  | NEQ | GT | EGT | LT | ELT ;
+OP1 			::= MAS | MENOS | OR ;
+OP2 			::= POR | DIV | AND ;
+OP3 			::= MENOS | NOT ;
 
 
 
