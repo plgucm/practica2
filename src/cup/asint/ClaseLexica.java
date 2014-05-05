@@ -36,4 +36,3 @@ public class ClaseLexica {
   public static final int ASIG = 10;
   public static final int MAS = 4;
 }
-
