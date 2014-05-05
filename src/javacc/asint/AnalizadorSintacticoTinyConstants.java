@@ -17,10 +17,12 @@ public interface AnalizadorSintacticoTinyConstants {
   int or = 11;
   int not = 12;
   int bool = 13;
-  int integer = 14;
-  int sepsec = 15;
-  int identificador = 18;
-  int numeroEntero = 19;
+  int verdad = 14;
+  int falso = 15;
+  int integer = 16;
+  int sepsec = 17;
+  int identificador = 20;
+  int numeroEntero = 21;
 
   int DEFAULT = 0;
 
@@ -39,16 +41,16 @@ public interface AnalizadorSintacticoTinyConstants {
     "\"or\"",
     "\"not\"",
     "\"bool\"",
+    "\"true\"",
+    "\"false\"",
     "\"int\"",
     "\"&&\"",
-    "<token of kind 16>",
-    "<token of kind 17>",
+    "<token of kind 18>",
+    "<token of kind 19>",
     "<identificador>",
     "<numeroEntero>",
     "\";\"",
     "\"=\"",
-    "\"true\"",
-    "\"false\"",
     "\"(\"",
     "\")\"",
     "\"+\"",

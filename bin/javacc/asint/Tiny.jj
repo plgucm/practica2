@@ -19,6 +19,8 @@ PARSER_END(AnalizadorSintacticoTiny)
   TOKEN:{<or:"or">} 
   TOKEN:{<not:"not">} 
   TOKEN:{<bool:"bool">} 
+  TOKEN:{<verdad:"true">} 
+  TOKEN:{<falso:"false">} 
   TOKEN:{<integer:"int">} 
   TOKEN:{<sepsec:"&&">} 
   SKIP:{<["\t"," ","\r","\b","\n"]>}  
@@ -26,21 +28,24 @@ PARSER_END(AnalizadorSintacticoTiny)
   TOKEN:{<identificador:<letra>(<letra>|<digito>|"_")*>}
   TOKEN:{<numeroEntero: (["+","-"])? <parteEntera> >}
   
-  void Sp()   : {} {S() <EOF>}
-  void S()    : {} {X() <sepsec> E()}
-  void X()    : {} {XD() RXD()}
-  void RXD()  : {} {";" X() | {}}
-  void XD()   : {} {<bool> <identificador> | <integer> <identificador>}
-  void E()    : {} {E0() RE()}
-  void RE()   : {} { ";" E() | {}}
+  
+  void ProgramaPrima() : {} {Programa() <EOF>}
+  void Programa(): {} {Declaraciones() <sepsec> Instrucciones()}
+  void Declaraciones(): {} {Declaracion() RestoDeclaraciones()}
+  void RestoDeclaraciones(): {} {";" Declaraciones() | {}}
+  void Declaracion(): {} {<bool> <identificador> | <integer> <identificador>}
+  void Instrucciones(): {} {Instruccion() RestoInstrucciones()}
+  void RestoInstrucciones(): {} {";" Instrucciones() | {}}
+  void Instruccion(): {} {InstruccionAsig()}
+  void InstruccionAsig(): {} { <identificador> "=" E0() }
   void E0()   : {} {E1() RE0()}
-  void RE0()  : {} {OP0() E1() | "=" E0() | {}}
+  void RE0()  : {} {OP0() E1() | {}}
   void E1()   : {} {E2() RE1()}
   void RE1()  : {} {OP1() E2() RE1() | {}}
   void E2()   : {} {E3() RE2()}
   void RE2()  : {} {OP2() E3() RE2() | {}}
   void E3()   : {} {OP3() E3() | E4()}
-  void E4()   : {} {<identificador> | <numeroEntero> | "true" | "false" | "(" E0() ")"}
+  void E4()   : {} {<identificador> | <numeroEntero> | <verdad> | <falso> | "(" E0() ")"}
   void OP0()  : {} { <lt> | <elt> | <gt> | <egt> | <eq> | <neq> }
   void OP1()  : {} { "+" | "-" | <or> }
   void OP2()  : {} { "*" | "/" | <and> }

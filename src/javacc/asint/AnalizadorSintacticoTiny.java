@@ -3,27 +3,27 @@ package javacc.asint;
 
 public class AnalizadorSintacticoTiny implements AnalizadorSintacticoTinyConstants {
 
-  final public void Sp() throws ParseException {
-    S();
+  final public void ProgramaPrima() throws ParseException {
+    Programa();
     jj_consume_token(0);
   }
 
-  final public void S() throws ParseException {
-    X();
+  final public void Programa() throws ParseException {
+    Declaraciones();
     jj_consume_token(sepsec);
-    E();
+    Instrucciones();
   }
 
-  final public void X() throws ParseException {
-    XD();
-    RXD();
+  final public void Declaraciones() throws ParseException {
+    Declaracion();
+    RestoDeclaraciones();
   }
 
-  final public void RXD() throws ParseException {
+  final public void RestoDeclaraciones() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case 20:
-      jj_consume_token(20);
-      X();
+    case 22:
+      jj_consume_token(22);
+      Declaraciones();
       break;
     default:
       jj_la1[0] = jj_gen;
@@ -31,7 +31,7 @@ public class AnalizadorSintacticoTiny implements AnalizadorSintacticoTinyConstan
     }
   }
 
-  final public void XD() throws ParseException {
+  final public void Declaracion() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case bool:
       jj_consume_token(bool);
@@ -48,21 +48,31 @@ public class AnalizadorSintacticoTiny implements AnalizadorSintacticoTinyConstan
     }
   }
 
-  final public void E() throws ParseException {
-    E0();
-    RE();
+  final public void Instrucciones() throws ParseException {
+    Instruccion();
+    RestoInstrucciones();
   }
 
-  final public void RE() throws ParseException {
+  final public void RestoInstrucciones() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case 20:
-      jj_consume_token(20);
-      E();
+    case 22:
+      jj_consume_token(22);
+      Instrucciones();
       break;
     default:
       jj_la1[2] = jj_gen;
 
     }
+  }
+
+  final public void Instruccion() throws ParseException {
+    InstruccionAsig();
+  }
+
+  final public void InstruccionAsig() throws ParseException {
+    jj_consume_token(identificador);
+    jj_consume_token(23);
+    E0();
   }
 
   final public void E0() throws ParseException {
@@ -80,10 +90,6 @@ public class AnalizadorSintacticoTiny implements AnalizadorSintacticoTinyConstan
     case elt:
       OP0();
       E1();
-      break;
-    case 21:
-      jj_consume_token(21);
-      E0();
       break;
     default:
       jj_la1[3] = jj_gen;
@@ -138,10 +144,10 @@ public class AnalizadorSintacticoTiny implements AnalizadorSintacticoTinyConstan
       OP3();
       E3();
       break;
+    case verdad:
+    case falso:
     case identificador:
     case numeroEntero:
-    case 22:
-    case 23:
     case 24:
       E4();
       break;
@@ -160,11 +166,11 @@ public class AnalizadorSintacticoTiny implements AnalizadorSintacticoTinyConstan
     case numeroEntero:
       jj_consume_token(numeroEntero);
       break;
-    case 22:
-      jj_consume_token(22);
+    case verdad:
+      jj_consume_token(verdad);
       break;
-    case 23:
-      jj_consume_token(23);
+    case falso:
+      jj_consume_token(falso);
       break;
     case 24:
       jj_consume_token(24);
@@ -267,7 +273,7 @@ public class AnalizadorSintacticoTiny implements AnalizadorSintacticoTinyConstan
       jj_la1_0();
    }
    private static void jj_la1_0() {
-      jj_la1_0 = new int[] {0x100000,0x6000,0x100000,0x2003f0,0xc000800,0x30000400,0x9cc1000,0x1cc0000,0x3f0,0xc000800,0x30000400,0x8001000,};
+      jj_la1_0 = new int[] {0x400000,0x12000,0x400000,0x3f0,0xc000800,0x30000400,0x930d000,0x130c000,0x3f0,0xc000800,0x30000400,0x8001000,};
    }
 
   public AnalizadorSintacticoTiny(java.io.InputStream stream) {
