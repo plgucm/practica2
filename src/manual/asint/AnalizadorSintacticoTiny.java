@@ -24,18 +24,18 @@ public class AnalizadorSintacticoTiny {
 		sigToken();
 	}
 
-	public void Sp() {
-		S();
+	public void ProgramaPrima() {
+		Programa();
 		empareja(ClaseLexica.EOF);
 	}
 
-	private void S() {
+	private void Programa() {
 		switch (anticipo.clase()) {
 		case BOOL:
 		case INT:
-			X();
+			Declaraciones();
 			empareja(ClaseLexica.SEPSEC);
-			E();
+			Instrucciones();
 			break;
 		default:
 			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
@@ -43,12 +43,12 @@ public class AnalizadorSintacticoTiny {
 		}
 	}
 
-	private void X() {
+	private void Declaraciones() {
 		switch (anticipo.clase()) {
 		case BOOL:
 		case INT:
-			XD();
-			RXD();
+			Declaracion();
+			RestoDeclaraciones();
 			break;
 		default:
 			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
@@ -56,14 +56,11 @@ public class AnalizadorSintacticoTiny {
 		}
 	}
 
-	private void XD() {
+	private void Declaracion() {
 		switch (anticipo.clase()) {
 		case BOOL:
-			empareja(ClaseLexica.BOOL);
-			empareja(ClaseLexica.ID);
-			break;
 		case INT:
-			empareja(ClaseLexica.INT);
+			empareja(anticipo.clase());
 			empareja(ClaseLexica.ID);
 			break;
 		default:
@@ -72,13 +69,11 @@ public class AnalizadorSintacticoTiny {
 		}
 	}
 
-	private void RXD() {
+	private void RestoDeclaraciones() {
 		switch (anticipo.clase()) {
 		case PUNTOCOMA:
 			empareja(ClaseLexica.PUNTOCOMA);
-//			XD();
-//			RXD();
-			X();
+			Declaraciones();
 			break;
 		case SEPSEC:
 			break;
@@ -88,22 +83,53 @@ public class AnalizadorSintacticoTiny {
 		}
 	}
 
-	private void E() {
+	private void Instrucciones() {
 		switch (anticipo.clase()) {
-		case TRUE:
-		case FALSE:
-		case NOT:
-		case MENOS:
 		case ID:
-		case NUM:
-		case PAP:
-			E0();
-			RE();
+			Instruccion();
+			RestoInstrucciones();
 			break;
 		default:
 			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.NOT, ClaseLexica.MENOS, ClaseLexica.ID,
-					ClaseLexica.NUM, ClaseLexica.PAP);
+					ClaseLexica.ID);
+		}
+	}
+
+	private void Instruccion() {
+		switch (anticipo.clase()) {
+		case ID:
+			InstruccionAsig();
+			break;
+		default:
+			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
+					ClaseLexica.ID);
+		}
+	}
+	
+	private void InstruccionAsig() {
+		switch (anticipo.clase()) {
+		case ID:
+			empareja(ClaseLexica.ID);
+			empareja(ClaseLexica.ASIG);
+			E0();
+			break;
+		default:
+			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
+					ClaseLexica.ID);
+		}
+	}
+
+	private void RestoInstrucciones() {
+		switch (anticipo.clase()) {
+		case PUNTOCOMA:
+			empareja(ClaseLexica.PUNTOCOMA);
+			Instrucciones();
+			break;
+		case EOF:
+			break;
+		default:
+			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
+					ClaseLexica.PUNTOCOMA);
 		}
 	}
 
@@ -201,22 +227,6 @@ public class AnalizadorSintacticoTiny {
 		default:
 			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
 					ClaseLexica.ID, ClaseLexica.NUM, ClaseLexica.PAP);
-		}
-	}
-
-	private void RE() {
-		switch (anticipo.clase()) {
-		case PUNTOCOMA:
-			empareja(ClaseLexica.PUNTOCOMA);
-//			E0();
-//			RE();
-			E();
-			break;
-		case EOF:
-			break;
-		default:
-			errores.errorSintactico(anticipo.fila(), anticipo.clase(),
-					ClaseLexica.PUNTOCOMA, ClaseLexica.SEPSEC);
 		}
 	}
 

@@ -1,6 +1,5 @@
 Prioridad 0 
 <, >, <=, >=, !=, == binario, no asociativo.
-asig binario, asocia derecha
 
 Prioridad 1 
 +, -, or binario, asociativo a izquierda
@@ -25,22 +24,23 @@ http://portal.esi.uclm.es/proletool/compilerEntry.py
 grammar practica2
 {
 	analysis LL1;
-	nonterminal Sp, S, X, XD, RXD, E, RE, E0, E1, E2, E3, E4, RE0, RE1, RE2;
-	terminal OP0, OP1, OP2, OP3, OP4, igual, id, num, pariz, pardr, tipo, sepsec, puntocoma, bool, int, true, false;
+nonterminal ProgramaPrima, Programa, Declaraciones, Declaracion, InstruccionAsig, RestoDeclaraciones, Instrucciones, Instruccion, RestoInstrucciones, E0, E1, E2, E3, E4, RE0, RE1, RE2;
+terminal OP0, OP1, OP2, OP3, OP4, asig, id, num, pariz, pardr, tipo, sepsec, puntocoma, bool, int, true, false;
 	
-	Sp := S;
-	S := X sepsec E;
-	X := XD RXD;
-	RXD := puntocoma XD RXD | ;
-	XD := bool id | int id;
-           E := E0 RE;
-	RE := puntocoma E0 RE | ;
-
+ProgramaPrima := Programa | ;
+	Programa := Declaraciones sepsec Instrucciones;
+	Declaraciones := Declaracion RestoDeclaraciones;
+	RestoDeclaraciones := puntocoma Declaraciones | ;
+	Declaracion := bool id | int id;
+	Instrucciones := Instruccion RestoInstrucciones;
+	RestoInstrucciones := puntocoma Instrucciones | ;
+	Instruccion := InstruccionAsig;
+InstruccionAsig := id asig E0;
 	E0 := E1 RE0;
-	RE0 := OP0 E1 | igual E0 | ;
-           E1 := E2 RE1;
+	RE0 := OP0 E1| ;
+            E1 := E2 RE1;
 	RE1 := OP1 E2 RE1 | ;
-           E2 := E3 RE2;
+            E2 := E3 RE2;
 	RE2 := OP2 E3 RE2 | ;
 	E3 := OP3 E3 | E4;
 	E4 := id | num |  true | false | pariz E0 pardr;
